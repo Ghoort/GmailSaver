@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <OPENSSL_ROOT_PATH>c:\Projects\openssl-1.0.2h\</OPENSSL_ROOT_PATH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LocalDebuggerEnvironment Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OPENSSL_ROOT_PATH)\out32dll;$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OPENSSL_ROOT_PATH)\out32dll.dbg;$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(IncludePath);$(OPENSSL_ROOT_PATH)\inc32</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(LibraryPath);$(OPENSSL_ROOT_PATH)\out32dll.dbg</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(LibraryPath);$(OPENSSL_ROOT_PATH)\out32dll</LibraryPath>
+    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OPENSSL_ROOT_PATH)\out32dll.dbg;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OPENSSL_ROOT_PATH)\out32dll;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <BuildMacro Include="OPENSSL_ROOT_PATH">
+      <Value>$(OPENSSL_ROOT_PATH)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerEnvironment>PATH=%PATH%;$(OPENSSL_ROOT_PATH)out32dll.dbg;$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerEnvironment>PATH=%PATH%;$(OPENSSL_ROOT_PATH)out32dll;$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="$(OPENSSL_ROOT_PATH)\inc32\openssl/applink.c" >
+		<PrecompiledHeader >NotUsing</PrecompiledHeader>
+		<PreprocessorDefinitions >_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+
+  </ItemGroup>
+
+</Project>

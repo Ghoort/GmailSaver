@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <BOOST_ROOT_PATH>c:\Projects\boost_1_61_0\</BOOST_ROOT_PATH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(IncludePath);$(BOOST_ROOT_PATH)</IncludePath>
+    <LibraryPath Condition="'$(Platform)'=='x64'">$(LibraryPath);$(BOOST_ROOT_PATH)stage\lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <ExecutablePath>$(BOOST_ROOT_PATH)stage\lib;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <BuildMacro Include="BOOST_ROOT_PATH">
+      <Value>$(BOOST_ROOT_PATH)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+
+  </ItemGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>BOOST_ALL_DYN_LINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <LocalDebuggerEnvironment>PATH=%PATH%;$(BOOST_ROOT_PATH)stage\lib;$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+  </PropertyGroup>
+
+</Project>

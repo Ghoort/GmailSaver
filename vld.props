@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <VLD_ROOT_PATH>c:\Projects\vld\</VLD_ROOT_PATH>
+    <VLD_BIN_PATH>$(VLD_ROOT_PATH)src\bin\x64\Release-v140\</VLD_BIN_PATH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(IncludePath);$(VLD_ROOT_PATH)\src</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(LibraryPath);$(VLD_BIN_PATH)</LibraryPath>
+ </PropertyGroup>
+   <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vld_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="VLD_ROOT_PATH">
+      <Value>$(VLD_ROOT_PATH)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerEnvironment>PATH=%PATH%;$(VLD_BIN_PATH);$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+  </PropertyGroup>
+</Project>

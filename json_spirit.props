@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <JSON_SPIRIT_ROOT_PATH>c:\Projects\json_spirit\</JSON_SPIRIT_ROOT_PATH>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(IncludePath);$(JSON_SPIRIT_ROOT_PATH)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(LibraryPath);$(JSON_SPIRIT_ROOT_PATH)build\Debug\</LibraryPath>
+		<LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(LibraryPath);$(JSON_SPIRIT_ROOT_PATH)build\Release\</LibraryPath>
+  </PropertyGroup>
+     <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>json.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>
