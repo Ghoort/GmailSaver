@@ -55,8 +55,7 @@ key | -k | | Path to RSA PEM for ssh key
 
 ## Parameters of Decoder
 
-Параметры в программу могут предаваться через обычный инициализационный файл 
-или командную строку. Используются следующие ключи
+Parameters can be passed via ini-file or command line. The software has the following parameters
 
 Name in file | Name in command line	| Default value | Description
 -------------|----------------------|---------------|------------
